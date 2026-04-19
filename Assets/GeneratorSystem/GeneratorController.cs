@@ -8,6 +8,7 @@ public class GeneratorController : MonoBehaviour
     private float currentHoldTime = 0f;
 
     public bool isPowered = false;
+    public bool isRealGenerator = true;
 
     [Header("Audio Settings")]
     public AudioSource clickSound;
@@ -81,6 +82,8 @@ public class GeneratorController : MonoBehaviour
         {
             alarmSound.PlayDelayed(delayBeforeAlarm);
         }
+
+        FindAnyObjectByType<GameManager>().OnGeneratorTriggered(isRealGenerator);
 
         // 3. Disable this script so they can't interact with it ever again
         this.enabled = false;
